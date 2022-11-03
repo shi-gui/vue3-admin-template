@@ -5,7 +5,7 @@
 我们采用 vite + vue3 + ts 来作为模板
 
 ```js
-npm create vite@latest my-vue-app -- --template vue-ts
+npm init vite@latest my-vue-app -- --template vue-ts
 ```
 ![配置图](./public//img/vite.png)
 
