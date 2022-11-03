@@ -7,6 +7,7 @@
 ```js
 npm init vite@latest my-vue-app -- --template vue-ts
 ```
+
 ![配置图](./public//img/vite.png)
 
 ---
@@ -19,14 +20,17 @@ npm init vite@latest my-vue-app -- --template vue-ts
 npm i eslint -D
 npx eslint --init
 ```
+
 ![eslint](./public/img/eslint.png)
 
 依赖安装完成后，会生成.eslintrc.js 配置文件
 
 rules 规则可自行配置，此处配置开发常用的一些规则，至于这些规则的出处，可以去源码中查看或者去官网查看（node_modules 中.md 文件啥都有）
-* [eslint规则](https://www.runoob.com)
-* [@typescript-eslint/recommended规则](https://typescript-eslint.io/rules/)
-* [vue/vue3-essential规则](https://eslint.vuejs.org/rules/)
+
+- [eslint 规则](https://www.runoob.com)
+- [@typescript-eslint/recommended 规则](https://typescript-eslint.io/rules/)
+- [vue/vue3-essential 规则](https://eslint.vuejs.org/rules/)
+
 ```js
 module.exports = {
   env: {
@@ -141,7 +145,8 @@ module.exports = {
 ```js
 npm i prettier -D
 ```
-* [prettier规则选项](https://www.prettier.cn/docs/options.html)
+
+- [prettier 规则选项](https://www.prettier.cn/docs/options.html)
 
 在根目录下新建.prettierrc.js，并配置一些规则
 
@@ -193,3 +198,51 @@ npm i eslint-config-prettier eslint-plugin-prettier -D
 ```
 
 最后重启 vscode，你会发现冲突消失了，eslint 与 prettier 也按照我们预想的各司其职了，在运行时也能看到 ❌ 了。
+
+---
+
+## 三、husky + lint-staged +
+
+对于一些不使用 vscode 编辑器，或者没有安装 prettier 和 eslint 插件的用户而言，他们不能享受到插件带来的协助，而他们的代码自然大概率是不符合规范的，不该被提交到代码库。
+
+社区提供了 husky(添加 git hook) + lint-staged(检查暂存区)的渐进式方案。
+
+```js
+npm i husky lint-staged -D
+```
+
+在 package.json 中添加脚本
+
+```js
+{
+    "script":{
+        "prepare": "husky install"
+    }
+}
+```
+
+运行 npm run prepare；会为我们添加一个.husky 的目录，用于存放 git hook
+
+接下来我们为我们 git 仓库添加一个 pre-commit 钩子
+
+```js
+npx husky add .husky/pre-commit "npx --no-install lint-staged"
+```
+
+接下来我们配置 lint-staged,在 package.json 中添加下面的配置信息
+
+```js
+{
+  "lint-staged": {
+    "*.{js,vue,ts,jsx,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{html,css,less,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}
+```
+
+这样之后，我们后续提交到暂存区的代码也就会被 eslint+prettier 格式化和检查，进一步保证我们的代码规范。
