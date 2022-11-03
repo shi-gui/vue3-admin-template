@@ -141,6 +141,7 @@ module.exports = {
 ```js
 npm i prettier -D
 ```
+* [prettier规则选项](https://www.prettier.cn/docs/options.html)
 
 在根目录下新建.prettierrc.js，并配置一些规则
 
