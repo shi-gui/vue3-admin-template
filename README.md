@@ -201,7 +201,9 @@ npm i eslint-config-prettier eslint-plugin-prettier -D
 
 ---
 
-## 三、husky + lint-staged +
+## 三、husky + lint-staged + commitlint 规范提交
+
+### 1、pre-commit 钩子
 
 对于一些不使用 vscode 编辑器，或者没有安装 prettier 和 eslint 插件的用户而言，他们不能享受到插件带来的协助，而他们的代码自然大概率是不符合规范的，不该被提交到代码库。
 
@@ -246,3 +248,31 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 ```
 
 这样之后，我们后续提交到暂存区的代码也就会被 eslint+prettier 格式化和检查，进一步保证我们的代码规范。
+
+### 2、commit-msg 钩子
+
+安装必要包
+
+```js
+npm i commitlint @commitlint/config-conventional -D
+// 创建出来的commitlint.config 需要另存为utf-8的格式
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+- [commitlint 官网](https://commitlint.js.org/#/?id=getting-started)
+- @commitlint/config-conventional 规范配置（默认是 Angular 的提交规范）
+
+这个时候 commit msg 就需要符合 Angular 的提交规范才能通过钩子了，如`<type>(<scope>): <subject>`
+
+安装辅助提交依赖
+
+```js
+npm i commitizen cz-conventional-changelog -D
+npm set-script commit "git-cz"
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+
+这个时候，我们就可以通过 npm run commit | yarn commit 来提交代码了，你就会看到下面这种交互界面
+
+![commit提交图](./public/img/commit.png)
