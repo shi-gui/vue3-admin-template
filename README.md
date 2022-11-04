@@ -357,3 +357,6 @@ package.json 中,将原来 commit 配置,变更为自定义配置
 然后提交会变成这样
 
 ![自定义提交](./public//img/commit_custom.png)
+
+> 费了九牛二虎之力才配置完成，有没有简单的方法呢？
+> 答案自然是有的 [web-norm 一键生成配置](https://github.com/lyh0371/web-norm)
