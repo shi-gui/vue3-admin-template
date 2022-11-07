@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5"

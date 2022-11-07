@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
+import { setStorage, getStorage } from './utils/storage';
+
+setStorage('test', '100');
+setTimeout(() => {
+  console.log(getStorage('test'));
+}, 8000);
 </script>
 
 <template>

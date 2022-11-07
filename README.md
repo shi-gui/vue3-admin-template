@@ -360,3 +360,17 @@ package.json 中,将原来 commit 配置,变更为自定义配置
 
 > 费了九牛二虎之力才配置完成，有没有简单的方法呢？
 > 答案自然是有的 [web-norm 一键生成配置](https://github.com/lyh0371/web-norm)
+
+---
+
+## 四、常用 api 的处理
+
+### 1、封装 storage
+
+实现功能：
+
+- 支持加密
+- 支持设置过期时间
+- 添加前缀，保证唯一性
+
+目录：src/utils/storage.ts
