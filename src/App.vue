@@ -10,7 +10,7 @@ setTimeout(() => {
 
 <template>
   <header>
-    <div class="wrapper">
+    <div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <hr />
@@ -21,3 +21,8 @@ setTimeout(() => {
 
   <RouterView />
 </template>
+<style>
+body {
+  background: #fff !important;
+}
+</style>

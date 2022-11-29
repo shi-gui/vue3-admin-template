@@ -1,0 +1,93 @@
+.loading {
+  @height: 6px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.8);
+  user-select: none;
+  & .loading-fade-wrapper {
+    width: 250px;
+    height: 100px;
+    text-align: center;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-125px, -50px);
+    & .loading-img {
+      width: 125px;
+    }
+  }
+
+  @keyframes updown {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-@height);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes downup {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(@height);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  &:global {
+    &.loading-fade-enter-from,
+    &.loading-fade-leave-to {
+      opacity: 0;
+    }
+    &.loading-fade-enter-active,
+    &.loading-fade-leave-active {
+      transition: opacity 0.2s ease-out;
+    }
+  }
+
+  .loading-dot-wrapper {
+    display: flex;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 3px;
+    &.run {
+      .loading-dot-wrapper__dot {
+        @duration: 0.6s;
+        @delay: 0.2s;
+
+        // 奇数
+        .animation(@i) when not(mod(@i,2)=0) {
+          animation: updown @duration linear @delay * @i;
+        }
+        // 偶数
+        .animation(@i) when (mod(@i,2)=0) {
+          animation: downup @duration linear @delay * @i;
+        }
+
+        .gen(@n, @i: 1) when (@i =< @n) {
+          &:nth-child(@{i}) {
+            .animation(@i);
+          }
+          .gen(@n, (@i + 1));
+        }
+
+        // “loading...”字样长度为10
+        .gen(10);
+      }
+    }
+  }
+}

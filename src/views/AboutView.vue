@@ -7,13 +7,3 @@
     </div>
   </div>
 </template>
-<style lang="less" scoped>
-div {
-  p {
-    color: red;
-  }
-  span {
-    color: green;
-  }
-}
-</style>

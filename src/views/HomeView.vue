@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import Loading from '../components/Loading/Loading';
+import { getCurrentInstance } from 'vue';
+// import { Loading } from '@/components';
+
+// Loading.show();
+// setTimeout(() => {
+//   Loading.hide();
+// }, 6000);
+const ctx = getCurrentInstance();
+ctx?.appContext.config.globalProperties.$loading.show();
 </script>
 
 <template>
-  <Loading />
   <h1>home页面</h1>
 </template>

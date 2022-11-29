@@ -1,16 +1,26 @@
-import { Component, createApp } from 'vue';
+import { createApp } from 'vue';
+import type { Component } from 'vue';
 
-export default function mountComponent(RootComponent: Component) {
+interface Extra {
+  parent?: HTMLElement;
+  createRoot?(): HTMLElement;
+  insert?(root: HTMLElement): void;
+  remove?(root: HTMLElement): void;
+}
+export default function mountComponent(
+  RootComponent: Component,
+  { parent = document.body, createRoot, insert, remove }: Extra = {}
+) {
+  // 返回RootComponent组件实例
   const app = createApp(RootComponent);
-  const root = document.createElement('div');
-  document.body.appendChild(root);
+  const root = createRoot ? createRoot() : document.createElement('div');
+  insert ? insert(root) : parent.appendChild(root);
 
   return {
-    // app.mount() 返回根组件实例
     instance: app.mount(root),
     unmount() {
       app.unmount();
-      document.body.removeChild(root);
+      remove ? remove(root) : parent.removeChild(root);
     }
   };
 }
