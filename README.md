@@ -92,7 +92,7 @@ module.exports = {
 执行 lint 命令
 
 ```js
-npm lint
+npm run lint
 ```
 
 ![eslint](./public/img/eslint_parse_error.png)
@@ -253,9 +253,10 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 
 安装必要包
 
+<b>注意：创建出来的 commitlint.config 需要另存为 utf-8 的格式</b>
+
 ```js
 npm i commitlint @commitlint/config-conventional -D
-// 创建出来的commitlint.config 需要另存为utf-8的格式
 echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
@@ -363,14 +364,27 @@ package.json 中,将原来 commit 配置,变更为自定义配置
 
 ---
 
-## 四、常用 api 的处理
+## 四、封装
 
-### 1、封装 storage
+### 1、工具类
 
-实现功能：
+- 封装 storage
 
-- 支持加密
-- 支持设置过期时间
-- 添加前缀，保证唯一性
+  实现功能：
 
-目录：src/utils/storage.ts
+  - 支持加密
+  - 支持设置过期时间
+  - 添加前缀，保证唯一性
+    <br>
+    <br>
+
+  目录：src/utils/storage.ts
+
+### 2、组件类
+
+- 声明式 loading 组件
+
+  实现功能：
+
+  - 直接调用实例方法，控制 loading 显示隐藏
+    eg: Loading.show() 显示 Loading.hiden() 隐藏

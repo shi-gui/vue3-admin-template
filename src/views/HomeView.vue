@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue';
-// import { Loading } from '@/components';
+import { Loading } from '@/components';
 
-// Loading.show();
-// setTimeout(() => {
-//   Loading.hide();
-// }, 6000);
-const ctx = getCurrentInstance();
-ctx?.appContext.config.globalProperties.$loading.show();
+Loading.show();
+setTimeout(() => Loading.hide(), 5000);
 </script>
 
 <template>
