@@ -6,5 +6,5 @@ setTimeout(() => Loading.hide(), 1000);
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline bg-slate-400">Hello world!</h1>
+  <div class="text-green-500">home页面</div>
 </template>
