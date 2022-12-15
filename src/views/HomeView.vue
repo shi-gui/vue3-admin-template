@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { Loading } from '@/components';
-
-Loading.show();
-setTimeout(() => Loading.hide(), 1000);
+import Log from '@/assets/img/log.jpg';
+import IconTest from '@/assets/img/IconTest.svg?component';
+import { version } from '../../package.json';
 </script>
 
 <template>
-  <div class="text-green-500">home页面</div>
+  <!-- 在模板中使用 -->
+  <img :src="Log" alt="" srcset="" />
+  <IconTest fill="red" />
+  {{ version }}
 </template>
+
+<style>
+/* 在css中使用 */
+div {
+  background: url('@/assets/img/log.jpg') no-repeat;
+}
+</style>

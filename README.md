@@ -276,7 +276,7 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 
 这个时候，我们就可以通过 npm run commit | yarn commit 来提交代码了，你就会看到下面这种交互界面
 
-## ![commit提交图](./public/img/commit.png)
+### ![commit提交图](./public/img/commit.png)
 
 ---
 
@@ -392,3 +392,27 @@ package.json 中,将原来 commit 配置,变更为自定义配置
 ## 五、第三方轮子
 
 ### 1、原子类 css tailwind
+
+## 六、vite 配置
+
+### 1、SVG 组件
+
+[vite-svg-loader](https://github.com/jpkleemans/vite-svg-loader)
+
+```js
+npm install vite-svg-loader --save-dev
+```
+
+```js
+// vite.config.js
+import svgLoader from 'vite-svg-loader';
+
+export default defineConfig({
+  plugins: [vue(), svgLoader()]
+});
+```
+
+```js
+// 引用时需要指明后缀，当然也可以配置默认选项
+import IconTest from '@/assets/img/IconTest.svg?component';
+```
