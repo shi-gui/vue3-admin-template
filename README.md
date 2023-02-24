@@ -23,7 +23,7 @@ npx eslint --init
 
 ![eslint](./public/img/eslint.png)
 
-依赖安装完成后，会生成.eslintrc.js 配置文件
+依赖安装完成后，会生成.eslintrc.js 配置文件（如果生成的是.cjs 的文件，将 package.json 中的 "type": "module" 去掉，重新安装依赖）
 
 rules 规则可自行配置，此处配置开发常用的一些规则，至于这些规则的出处，可以去源码中查看或者去官网查看（node_modules 中.md 文件啥都有）
 
