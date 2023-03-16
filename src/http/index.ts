@@ -1,9 +1,10 @@
 import Request from './request';
 import type { AxiosResponse } from 'axios';
 import type { Response, CustomRequestConfig } from './request/types';
+import requestUrl from './requestUrl';
 
 const request = new Request({
-  baseURL: import.meta.env.BASE_URL,
+  baseURL: process.env.NODE_ENV === 'dev' ? '/cloud' : requestUrl,
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
