@@ -68,8 +68,7 @@ export default defineConfig(({ command, mode }) => {
           charset: false,
           additionalData: `@import '@asset/css/index.less';`
         }
-      },
-      postcss: {}
+      }
     },
     base: './',
     // 配置别名

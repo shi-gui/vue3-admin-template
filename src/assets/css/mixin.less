@@ -1,0 +1,9 @@
+// 溢出省略...
+.text_overflow(@line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+}
