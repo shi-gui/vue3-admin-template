@@ -382,7 +382,7 @@ package.json 中,将原来 commit 配置,变更为自定义配置
 
 ### 2、组件类
 
-- 声明式 loading 组件
+- 函数式 loading 组件
 
   实现功能：
 
@@ -394,6 +394,13 @@ package.json 中,将原来 commit 配置,变更为自定义配置
 ### 1、原子类 css tailwind
 
 ## 六、vite 配置
+### 1、unplugin-vue-components
+  - 在 src/components 下的 .vue 组件会被自动引入，无需手动 import；
+  - unplugin-vue-components 自动 import 插件，支持自定义组件(不支持 jsx)和第三方 UI 组件库
+  - https://github.com/antfu/unplugin-vue-components
+### 2、unplugin-auto-import
+  - 支持 vue, vue-router, vue-i18n, @vueuse/head, @vueuse/core 等自动引入
+  - https://github.com/antfu/unplugin-auto-import
 
 ### 1、SVG 组件
 

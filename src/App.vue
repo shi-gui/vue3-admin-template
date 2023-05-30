@@ -1,28 +1,8 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-import { setStorage, getStorage } from './utils/storage';
-
-setStorage('test', '100');
-setTimeout(() => {
-  console.log(getStorage('test'));
-}, 8000);
+const text = ref('text-font');
 </script>
 
 <template>
-  <header>
-    <div>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <hr />
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="text-green-700">{{ text }}</div>
+  <a-button>121</a-button>
 </template>
-<style>
-body {
-  background: #fff !important;
-}
-</style>
