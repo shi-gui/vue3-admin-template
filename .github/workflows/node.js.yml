@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master // 代码分支
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16 // node 版本
+
+      - name: Install dependencies
+
+        run: npm install
+
+      - name: Build
+        run: npm run build // 使用npm打包
+
+      # 部署到 GitHub Pages
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.CI_SECRET }} // 你的token，去github新建，去项目新建变量防止token泄漏
+          BRANCH: gh-pages // 打包后代码推送的分支
+          FOLDER: dist // 打包后生成的目录
