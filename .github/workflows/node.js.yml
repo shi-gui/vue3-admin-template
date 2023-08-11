@@ -23,7 +23,7 @@ jobs:
         run: npm install -g yarn && yarn
 
       - name: Build
-        run: yarn run build
+        run: yarn run build:test
 
       # 部署到 GitHub Pages
       - name: Deploy
