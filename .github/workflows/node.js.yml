@@ -20,15 +20,15 @@ jobs:
 
       - name: Install dependencies
 
-        run: npm install
+        run: npm install -g yarn && yarn // 使用pnpm安装依赖
 
       - name: Build
-        run: npm run build // 使用npm打包
+        run: yarn run build // 使用npm打包
 
       # 部署到 GitHub Pages
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          GITHUB_TOKEN: ${{ secrets.CI_SECRET }} // 你的token，去github新建，去项目新建变量防止token泄漏
+          GITHUB_TOKEN: ${{ secrets.CI_SECRET2 }} // 你的token，去github新建，去项目新建变量防止token泄漏
           BRANCH: gh-pages // 打包后代码推送的分支
           FOLDER: dist // 打包后生成的目录
